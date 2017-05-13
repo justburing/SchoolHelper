@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.burning.smile.schoolhelper.util.chat.ChatCommentKeyBoard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:id="@+id/ek_bar"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/toolbarLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp_8"
+            android:paddingTop="@dimen/dp_8">
+
+            <LinearLayout
+                android:id="@+id/backLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iconBack"
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:layout_marginTop="@dimen/dp_1"
+                    android:src="@mipmap/ic_back_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginTop="5dp"
+                    android:text="返回"
+                    android:textColor="@color/text_dark_1"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="详情"
+                android:textColor="@color/text_dark_1"
+                android:textSize="@dimen/text_16sp" />
+
+            <ImageView
+                android:id="@+id/iconMore"
+                android:padding="@dimen/dp_4"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:src="@mipmap/ic_more_1"
+                android:layout_marginRight="@dimen/dp_4" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_below="@+id/toolbarLL"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0.5"
+            android:background="@color/grey_BBBABB" />
+
+        <ScrollView
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
+            android:layout_marginBottom="@dimen/dp_18"
+            android:layout_below="@+id/view"
+            android:id="@+id/scrollView"
+            android:scrollbars="none"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:paddingBottom="@dimen/dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/forumTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_10"
+                    android:text=""
+                    android:textColor="@color/text_dark_1"
+                    android:textSize="@dimen/text_20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_10">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/publisherAvatar"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@mipmap/ic_test_avatart" />
+
+                    <TextView
+                        android:id="@+id/publisherNickname"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="@dimen/dp_8"
+                        android:paddingRight="@dimen/dp_8"
+                        android:textColor="@color/text_dark"
+                        android:text="" />
+
+                    <TextView
+                        android:paddingBottom="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_4"
+                        android:paddingLeft="@dimen/dp_4"
+                        android:paddingRight="@dimen/dp_4"
+                        android:id="@+id/follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="+关注"
+                        android:textColor="@color/blue500" />
+                </LinearLayout>
+
+                <sj.keyboard.widget.EmoticonsEditText
+                    android:id="@+id/forumContent"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_dark"
+                    android:text=""
+                    android:textSize="@dimen/text_16sp" />
+
+                <com.burning.smile.schoolhelper.widget.ResizeListView
+                    android:id="@+id/forumImageLv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    tools:listitem="@layout/item_forum_detail_lv" />
+
+                <com.burning.smile.schoolhelper.widget.ResizeListView
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:id="@+id/forumFileLv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    tools:listitem="@layout/item_forum_file_lv" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingLeft="@dimen/dp_8"
+                    android:paddingRight="@dimen/dp_8">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/text_12sp"
+                        android:text="楼主" />
+
+                    <TextView
+                        android:id="@+id/forumTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/text_12sp"
+                        android:text="2017-04-01"
+                        android:layout_marginLeft="@dimen/dp_10" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_8"
+                    android:background="#E8E8E8" />
+
+                <com.burning.smile.schoolhelper.widget.ResizeListView
+                    android:id="@+id/commendLv"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:paddingRight="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:minHeight="200dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_forum_commend_lv" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/noDataView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/noDataImage"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@mipmap/ic_nodata" />
+
+                    <TextView
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey_BBBABB"
+                        android:textSize="@dimen/text_16sp"
+                        android:text="还没有人吐槽呢......" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</com.burning.smile.schoolhelper.util.chat.ChatCommentKeyBoard>

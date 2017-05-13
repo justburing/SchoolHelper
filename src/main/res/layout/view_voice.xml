@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <include layout="@layout/ic_spitview_horizontal" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_8"
+        android:id="@+id/record_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="按住说话"
+        android:layout_centerHorizontal="true" />
+
+    <com.burning.smile.androidtools.widget.record.RecordButton
+        android:padding="@dimen/dp_10"
+        android:layout_below="@+id/record_desc"
+        android:id="@+id/record"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@mipmap/record_1"
+        android:layout_centerInParent="true" />
+
+</LinearLayout>

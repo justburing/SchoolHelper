@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/dp_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/commenderAvatar"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:src="@mipmap/ic_test_avatart" />
+
+        <TextView
+            android:id="@+id/commenderNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BurNIng"
+            android:textColor="@color/text_grey"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_8" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:id="@+id/commenderLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="LV 12"
+            android:textSize="@dimen/text_10sp"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/dp_4"
+            android:paddingRight="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingBottom="@dimen/dp_2"
+            android:background="@drawable/rect_user_level" />
+    </LinearLayout>
+
+    <sj.keyboard.widget.EmoticonsEditText
+        android:layout_marginLeft="@dimen/dp_32"
+        android:layout_marginRight="@dimen/dp_10"
+        android:id="@+id/commendContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_16sp"
+        android:textColor="@color/text_dark"
+        android:text="6666666" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginLeft="@dimen/dp_32"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/whichFloor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_10sp"
+            android:textColor="@color/text_grey"
+            android:text="第1楼" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/floorCommendTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_10sp"
+            android:textColor="@color/text_grey"
+            android:text="17:24"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/item_more_op"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_more" />
+    </LinearLayout>
+
+    <com.burning.smile.schoolhelper.widget.ResizeListView
+        android:paddingLeft="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_8"
+        android:layout_marginLeft="@dimen/dp_32"
+        android:layout_marginRight="@dimen/dp_10"
+        android:id="@+id/commendsCommendLv"
+        android:background="#11005066"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="80dp"
+        android:divider="@null"
+        tools:listitem="@layout/item_forum_commend_commend_lv" />
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_12dp"
+    android:layout_marginBottom="@dimen/margin_12dp"
+    android:gravity="center">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="@dimen/avater_64dp"
+        android:layout_height="@dimen/avater_64dp"
+        android:layout_marginRight="@dimen/dp_20"
+        android:src="@mipmap/ic_test_avatart"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_2"
+        android:id="@+id/userProfileLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="微微一笑很倾城"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/text_18sp" />
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="2dp"
+                android:gravity="center"
+                android:text="100"
+                android:textColor="@color/text_orange_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_8"
+                android:gravity="center"
+                android:text="流币"
+                android:textColor="@color/text_orange_1" />
+
+            <Button
+                android:id="@+id/recharge"
+                android:layout_width="@dimen/margin_48dp"
+                android:layout_height="@dimen/dp_22"
+                android:background="@drawable/rect_recharge_btn"
+                android:gravity="center"
+                android:text="充值"
+                android:textColor="@color/text_grey" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

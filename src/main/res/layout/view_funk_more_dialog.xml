@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:paddingTop="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_18"
+        android:background="#55E8E8E8"
+        android:weightSum="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/likeLL"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:padding="@dimen/dp_8"
+                android:id="@+id/likeIcon"
+                android:background="@drawable/oval_bg"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:src="@mipmap/ic_like" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_8"
+                android:id="@+id/likeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey400"
+                android:text="点赞"
+                android:textSize="@dimen/text_10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/reporttLL"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:padding="@dimen/dp_8"
+                android:id="@+id/reportIcon"
+                android:background="@drawable/oval_bg"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:src="@mipmap/ic_report" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_8"
+                android:id="@+id/reportText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey400"
+                android:text="举报"
+                android:textSize="@dimen/text_10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/refreshLL"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:padding="@dimen/dp_8"
+                android:id="@+id/refreshIcon"
+                android:background="@drawable/oval_bg"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:src="@mipmap/ic_refresh_1" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_8"
+                android:id="@+id/refreshText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey400"
+                android:text="刷新"
+                android:textSize="@dimen/text_10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey800"
+        android:textSize="@dimen/text_14sp"
+        android:text="取消"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12" />
+</LinearLayout>

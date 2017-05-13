@@ -1,0 +1,157 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.burning.smile.schoolhelper">
+
+    <!-- Required -->
+    <permission
+        android:name="com.burning.smile.schoolhelper.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="com.burning.smile.schoolhelper.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络访问权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 读写SD卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- power lock -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--添加可以向外拨打电话的权限  -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--发送短信-->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 音频权限 -->
+    //
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_icon_3"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":multiprocess"
+            tools:node="replace">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!--<service android:name="cn.jpush.android.service.PushService"-->
+        <!--android:process=":multiprocess"-->
+        <!--tools:node="replace">-->
+        <!--</service>-->
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".register.RegisteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addexpress.AddExpressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.MineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".expressdetail.ExpressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".photoshower.PhotoViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".expresssearch.ExpressSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".funkdetail.FunkDetailActiviity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".forumdetail.ForumDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addfunk.AddFunkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addforum.AddForumActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".funksearch.FunkSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".forumsearch.ForumSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mine.MineProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myexpress.MyExpressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myfunk.MyFunkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:theme="@style/AppTheme2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myconversation.ConversationListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".myexpress.MyExpressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myexpress.ReceiverExpressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mydownload.MyDownloadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mycollection.MyCollectionActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.burning.smile.schoolhelper.widget.SquareLayout
+        android:id="@+id/layout"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+        <com.burning.smile.schoolhelper.widget.ProcessImageView
+            android:id="@+id/item_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/dp_12"
+            android:padding="@dimen/dp_4"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_test" />
+    </com.burning.smile.schoolhelper.widget.SquareLayout>
+
+    <ImageView
+        android:id="@+id/deleteIcon"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:layout_toRightOf="@+id/layout"
+        android:src="@mipmap/ic_delete" />
+</RelativeLayout>

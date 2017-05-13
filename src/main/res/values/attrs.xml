@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SegmentedGroup">
+        <attr name="sc_corner_radius" format="dimension" />
+        <attr name="sc_border_width" format="dimension" />
+        <attr name="sc_tint_color" format="color" />
+        <attr name="sc_checked_text_color" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StarRatingView">
+        <!--星星点亮-->
+        <attr name="stat_on" format="reference"></attr>
+        <!--星星关闭-->
+        <attr name="stat_off" format="reference"></attr>
+        <!--半颗星星-->
+        <attr name="stat_half" format="reference"></attr>
+        <!--是否可以点击滑动评分-->
+        <attr name="ratable" format="boolean"></attr>
+        <!--星星之间间距-->
+        <attr name="star_padding" format="dimension"></attr>
+    </declare-styleable>
+</resources>

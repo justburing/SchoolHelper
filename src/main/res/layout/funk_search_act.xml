@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toolbarLL"
+        android:orientation="horizontal"
+        android:background="#CDCBCD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_48"
+        android:paddingBottom="@dimen/dp_8"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/searchLL"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="left|center"
+            android:layout_height="match_parent"
+            android:background="@drawable/rect_search_bg">
+
+            <ImageView
+                android:id="@+id/ivDropDown"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:padding="@dimen/dp_4"
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:src="@mipmap/ic_dropdown" />
+
+            <EditText
+                android:layout_marginLeft="@dimen/dp_8"
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="left|center"
+                android:hint="请输入搜索关键字"
+                android:inputType="text"
+                android:textSize="@dimen/text_12sp"
+                android:textColor="@color/text_dark"
+                android:imeOptions="actionSearch" />
+        </LinearLayout>
+
+        <TextView
+            android:paddingLeft="@dimen/dp_8"
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_4"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/popMenu"
+        android:layout_marginTop="2px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarLL"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/leftListView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_black"
+            android:visibility="invisible" />
+
+        <ListView
+            android:id="@+id/rightListView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:background="@drawable/border_black" />
+    </LinearLayout>
+
+    <ListView
+        android:visibility="gone"
+        android:layout_below="@+id/toolbarLL"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/noDataView"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@mipmap/ic_nodata_1" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_BBBABB"
+            android:textSize="@dimen/text_16sp"
+            android:text="没有相关数据呢...." />
+
+        <Button
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_8"
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/rect_exit_btn_bg"
+            android:textColor="@color/white"
+            android:text="刷新" />
+    </LinearLayout>
+</RelativeLayout>

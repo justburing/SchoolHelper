@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_10"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_marginLeft="@dimen/dp_8"
+        android:id="@+id/menuIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_28"
+        android:src="@mipmap/ic_home" />
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.burning.smile.schoolhelper.widget.SegmentedGroup
+            android:id="@+id/segmentGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            app:sc_border_width="1dp"
+            app:sc_checked_text_color="#101010"
+            app:sc_corner_radius="0dp"
+            app:sc_tint_color="@color/radio_button_selected_color">
+
+            <RadioButton
+                android:gravity="center"
+                android:padding="4dp"
+                android:id="@+id/newsest"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="最新" />
+
+            <RadioButton
+                android:gravity="center"
+                android:padding="4dp"
+                android:id="@+id/hostest"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最热" />
+        </com.burning.smile.schoolhelper.widget.SegmentedGroup>
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/add"
+                android:padding="@dimen/dp_2"
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_24"
+                android:src="@mipmap/ic_add" />
+
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_2"
+                android:padding="@dimen/dp_2"
+                android:layout_gravity="center"
+                android:id="@+id/search"
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_24"
+                android:src="@mipmap/ic_search" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

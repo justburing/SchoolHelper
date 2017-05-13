@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/qq_bg">
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@color/text_grey" />
+
+    <LinearLayout
+        android:layout_below="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8">
+
+        <ImageView
+            android:id="@+id/icBack"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
+            android:layout_marginRight="@dimen/dp_4"
+            android:src="@mipmap/arrow_left" />
+
+        <ImageView
+            android:id="@+id/icEmotion"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
+            android:src="@mipmap/ic_emoij_normal" />
+
+        <sj.keyboard.widget.EmoticonsEditText
+            android:id="@+id/commentContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_weight="1"
+            android:background="@drawable/common_bg_round_white"
+            android:hint="说点什么吧..."
+            android:paddingBottom="@dimen/dp_8"
+            android:paddingLeft="@dimen/dp_8"
+            android:paddingRight="@dimen/dp_8"
+            android:paddingTop="@dimen/dp_8"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_14sp" />
+
+        <Button
+            android:id="@+id/sendComment"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:background="@drawable/rect_btn_send"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_12sp" />
+    </LinearLayout>
+
+    <sj.keyboard.widget.FuncLayout
+        android:id="@+id/funcLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone" />
+</LinearLayout>

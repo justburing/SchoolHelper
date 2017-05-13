@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dp_12"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_12">
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:src="@mipmap/ic_mp3" />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="left|center"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/item_fileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="测试测试"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_18sp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/item_fileTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12-2020"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/text_14sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_view"
+    android:paddingLeft="@dimen/dp_8"
+    android:paddingBottom="@dimen/dp_8"
+    android:paddingTop="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
+    android:background="@color/grey50">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_avatar"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48" />
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/ll"
+        android:layout_toRightOf="@+id/item_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_8">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/item_nickname"
+            android:layout_toRightOf="@id/item_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_18sp"
+            android:layout_marginBottom="@dimen/dp_4" />
+
+        <TextView
+            android:id="@+id/item_lastmessage"
+            android:layout_toRightOf="@id/item_avatar"
+            android:layout_below="@+id/item_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/text_14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/dp_4"
+        android:id="@+id/item_last_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/text_12sp"
+        android:gravity="center" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/dp_4"
+        android:layout_below="@+id/item_last_time"
+        android:padding="@dimen/dp_4"
+        android:id="@+id/item_unread_msg_num"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_12sp"
+        android:text="0"
+        android:gravity="center"
+        android:background="@drawable/oval_unread_msg" />
+</RelativeLayout>
