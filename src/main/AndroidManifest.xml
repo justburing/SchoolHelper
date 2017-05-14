@@ -152,6 +152,9 @@
         <activity
             android:name=".mycollection.MyCollectionActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mine.CreditShowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3"/>
     </application>
 
 </manifest>

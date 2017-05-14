@@ -508,7 +508,7 @@ public class FunkDetailActiviity extends BaseActivity implements FunkDetailContr
             public void onClick(View v) {
                 dialog.dismiss();
                 if (likeText.getText().toString().equals("取消点赞")) {
-                    mPresenter.cancelLikeFunk(funkId);
+                   mPresenter.cancelLikeFunk(funkId);
                 } else {
                     mPresenter.likeFunk(funkId);
                 }

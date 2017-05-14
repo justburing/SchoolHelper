@@ -24,11 +24,11 @@ public class RetrofitUtil {
             synchronized (Retrofit.class) {
                 if (retrofit == null) {
                     retrofit = new Retrofit.Builder()
-                            .client(OkHttpUtils.getInstance().getOkHttpClient())
-                            .baseUrl(AppConfig.BASE_URL)
                             .addConverterFactory(FastJsonConverterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                            .client(OkHttpUtils.getInstance().getOkHttpClient())
+                            .baseUrl(AppConfig.BASE_URL)
                             .build();
 
                 }

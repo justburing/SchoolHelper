@@ -109,7 +109,7 @@ public class MyExpressDetailActivity extends BaseActivity {
                 if (comfirFinishDeal.getText().toString().equals("确认收到")) {
                     showComfirmDialog(id);
                 } else {
-                    showOpinionDialog();
+                    showOpinionDialog(id);
                 }
             }
         });
@@ -333,6 +333,45 @@ public class MyExpressDetailActivity extends BaseActivity {
                 });
     }
 
+
+    public void reviewOrder(String expressId, String rating, String content) {
+        AndroidFragUtil.showDialog(getSupportFragmentManager(), new LoadingFragment());
+        RetrofitUtil.getRetrofitApiInstance().reviewOrder(userInfoBean.getToken(), expressId, rating, content)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<JSONObject>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        AndroidFragUtil.dismissDialog(getSupportFragmentManager());
+                        if (e instanceof MalformedJsonException) {
+                            toast("评价订单失败");
+                        } else if (e instanceof HttpException) {
+                            try {
+                                JSONObject object = JSON.parseObject(((HttpException) e).response().errorBody().string().trim(), JSONObject.class);
+                                toast(object.getJSONObject("error").getString("message"));
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        } else if (e instanceof ConnectException) {
+                            toast("当前无网络,请检查网络状况后重试");
+                        } else {
+                            toast(e.toString());
+                        }
+                        Log.e("error", e.toString());
+                    }
+
+                    @Override
+                    public void onNext(JSONObject jsonObject) {
+                        AndroidFragUtil.dismissDialog(getSupportFragmentManager());
+                        toast("评价订单成功，感谢您的评价");
+                    }
+                });
+    }
     public void showComfirmDialog(final String id) {
         AlertDialog dialog = new AlertDialog.Builder(this).setMessage("确定此快递已经送达到您手上？")
                 .setPositiveButton("我确定", new DialogInterface.OnClickListener() {
@@ -351,7 +390,7 @@ public class MyExpressDetailActivity extends BaseActivity {
         dialog.show();
     }
 
-    public void showOpinionDialog() {
+    public void showOpinionDialog(final String expressId) {
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -369,10 +408,10 @@ public class MyExpressDetailActivity extends BaseActivity {
         View dialogView = LayoutInflater.from(MyExpressDetailActivity.this).inflate(R.layout.view_credit_dialog, null);
         final RelativeLayout root = (RelativeLayout) dialogView.findViewById(R.id.rl1);
         final TextView tv2 = (TextView) dialogView.findViewById(R.id.tv2);
-        tv2.setText("+2");
+        tv2.setText("+6");
         tv2.setTextColor(ContextCompat.getColor(MyExpressDetailActivity.this, R.color.yellow500));
         final StarRatingView starRatingView = (StarRatingView) dialogView.findViewById(R.id.ratingbar);
-        starRatingView.setRate(5);
+        starRatingView.setRate(6);
         final EditText opinion = (EditText) dialogView.findViewById(R.id.opinion);
         final Button cancel = (Button) dialogView.findViewById(R.id.cancel);
         final Button submit = (Button) dialogView.findViewById(R.id.submit);
@@ -394,7 +433,7 @@ public class MyExpressDetailActivity extends BaseActivity {
         window.setAttributes(lp);
         dialog.setContentView(dialogView);
         dialog.show();
-        score = 2.5f;
+        score = 3f;
         starRatingView.setOnRateChangeListener(new StarRatingView.OnRateChangeListener() {
             @Override
             public void onRateChange(int rate) {
@@ -406,11 +445,11 @@ public class MyExpressDetailActivity extends BaseActivity {
                 if (score <= 1) {
                     i = 0;
                     if (score == 0) {
-                        credit = -10;
+                        credit = -12;
                     } else if (score == 0.5) {
-                        credit = -8;
+                        credit = -9;
                     } else {
-                        credit = -5;
+                        credit = -6;
                     }
                     color = R.color.red800;
                 } else if (score > 1 && score <= 2) {
@@ -424,25 +463,25 @@ public class MyExpressDetailActivity extends BaseActivity {
                 } else if (score > 2 && score <= 3) {
                     i = 2;
                     if (score == 2.5) {
-                        credit = +2;
+                        credit = +3;
                     } else {
-                        credit = +5;
+                        credit = +6;
                     }
                     color = R.color.yellow500;
                 } else if (score > 3 && score <= 4) {
                     i = 3;
                     if (score == 3.5) {
-                        credit = +7;
+                        credit = +9;
                     } else {
-                        credit = +10;
+                        credit = +12;
                     }
                     color = R.color.blue600;
                 } else if (score > 4 && score <= 5) {
                     i = 4;
                     if (score == 4.5) {
-                        credit = +12;
-                    } else {
                         credit = +15;
+                    } else {
+                        credit = +18;
                     }
                     color = R.color.purplea700;
                 }
@@ -478,6 +517,8 @@ public class MyExpressDetailActivity extends BaseActivity {
                 textView.startAnimation(out);
                 tv2.setText(credit > 0 ? "+" + credit : credit + "");
                 tv2.setTextColor(ContextCompat.getColor(MyExpressDetailActivity.this, color));
+                root.requestLayout();
+                root.postInvalidate();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -492,7 +533,7 @@ public class MyExpressDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 thread = null;
-                Log.e("score", score + "");
+                reviewOrder(expressId,String.valueOf(score),opinion.getText().toString().trim().equals("")?"暂无评价":opinion.getText().toString().trim());
             }
         });
     }

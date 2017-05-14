@@ -314,10 +314,10 @@ public class FunkDetailPresenter implements FunkDetailContract.Presenter {
                     public void onError(Throwable e) {
                         view.dimissLoadingView();
                         if (e instanceof MalformedJsonException) {
-                            view.cancelLikeFunkFailure("取消收藏失败");
+                            view.cancelLikeFunkFailure("取消点赞失败");
                         } else if (e instanceof HttpException) {
                             try {
-                                JSONObject object = JSON.parseObject(((HttpException) e).response().errorBody().string(), JSONObject.class);
+                                JSONObject object = JSON.parseObject(((HttpException) e).response().errorBody().string().trim(), JSONObject.class);
                                 view.cancelLikeFunkFailure(object.getJSONObject("error").getString("message"));
                             } catch (IOException e1) {
                                 e1.printStackTrace();
@@ -334,9 +334,9 @@ public class FunkDetailPresenter implements FunkDetailContract.Presenter {
                     public void onNext(JSONObject jsonObject) {
                         view.dimissLoadingView();
                         if (jsonObject.getString("success").equals("true")) {
-                            view.cancelLikeFunkSuccessed("取消收藏成功");
+                            view.cancelLikeFunkSuccessed("取消点赞成功");
                         } else {
-                            view.cancelLikeFunkFailure("取消收藏失败");
+                            view.cancelLikeFunkFailure("取消点赞失败");
                         }
                     }
                 });

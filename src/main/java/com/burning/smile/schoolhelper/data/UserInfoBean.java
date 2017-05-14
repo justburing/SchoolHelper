@@ -1,6 +1,7 @@
 package com.burning.smile.schoolhelper.data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by smile on 2017/3/8.
@@ -9,8 +10,8 @@ public class UserInfoBean implements Serializable {
 
 
     /**
-     * user : {"id":"4","username":"2013329620045","mobile":"","nickname":"残念","email_verified":"0","avatar":null,"point":"0","coin":"0","created_ip":"115.204.229.55"}
-     * token : stn1znv3s9w4sgkkcccg44w8k4sk00g
+     * user : {"id":"6","username":"admin","mobile":"","roles":["ROLE_SUPER_ADMIN","ROLE_ADMIN","ROLE_USER"],"nickname":"admin","email":"test@admin.com","email_verified":"0","avatar":"http://112.74.36.71:8000/files/user/2017/05-06/08154738898e182085.jpg","point":"0","coin":"0","qq":"","birthday":null,"credit":"300","login_time":"2017-05-14T03:08:11+00:00","login_ip":"60.176.42.5","created_ip":"127.0.0.1","created_time":"2017-04-26T06:22:04+00:00","updated_time":"2017-05-14T03:08:11+00:00","locked":"0"}
+     * token : ns4qnpsgn0g0484wc4s4goo44csssc4
      */
 
     private UserBean user;
@@ -32,28 +33,48 @@ public class UserInfoBean implements Serializable {
         this.token = token;
     }
 
-    public static class UserBean implements Serializable {
+    public static class UserBean implements  Serializable{
         /**
-         * id : 4
-         * username : 2013329620045
+         * id : 6
+         * username : admin
          * mobile :
-         * nickname : 残念
+         * roles : ["ROLE_SUPER_ADMIN","ROLE_ADMIN","ROLE_USER"]
+         * nickname : admin
+         * email : test@admin.com
          * email_verified : 0
-         * avatar : null
+         * avatar : http://112.74.36.71:8000/files/user/2017/05-06/08154738898e182085.jpg
          * point : 0
          * coin : 0
-         * created_ip : 115.204.229.55
+         * qq :
+         * birthday : null
+         * credit : 300
+         * login_time : 2017-05-14T03:08:11+00:00
+         * login_ip : 60.176.42.5
+         * created_ip : 127.0.0.1
+         * created_time : 2017-04-26T06:22:04+00:00
+         * updated_time : 2017-05-14T03:08:11+00:00
+         * locked : 0
          */
 
         private String id;
         private String username;
         private String mobile;
         private String nickname;
+        private String email;
         private String email_verified;
-        private Object avatar;
+        private String avatar;
         private String point;
         private String coin;
+        private String qq;
+        private Object birthday;
+        private String credit;
+        private String login_time;
+        private String login_ip;
         private String created_ip;
+        private String created_time;
+        private String updated_time;
+        private String locked;
+        private List<String> roles;
 
         public String getId() {
             return id;
@@ -87,6 +108,14 @@ public class UserInfoBean implements Serializable {
             this.nickname = nickname;
         }
 
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
         public String getEmail_verified() {
             return email_verified;
         }
@@ -95,11 +124,11 @@ public class UserInfoBean implements Serializable {
             this.email_verified = email_verified;
         }
 
-        public Object getAvatar() {
+        public String getAvatar() {
             return avatar;
         }
 
-        public void setAvatar(Object avatar) {
+        public void setAvatar(String avatar) {
             this.avatar = avatar;
         }
 
@@ -119,12 +148,84 @@ public class UserInfoBean implements Serializable {
             this.coin = coin;
         }
 
+        public String getQq() {
+            return qq;
+        }
+
+        public void setQq(String qq) {
+            this.qq = qq;
+        }
+
+        public Object getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(Object birthday) {
+            this.birthday = birthday;
+        }
+
+        public String getCredit() {
+            return credit;
+        }
+
+        public void setCredit(String credit) {
+            this.credit = credit;
+        }
+
+        public String getLogin_time() {
+            return login_time;
+        }
+
+        public void setLogin_time(String login_time) {
+            this.login_time = login_time;
+        }
+
+        public String getLogin_ip() {
+            return login_ip;
+        }
+
+        public void setLogin_ip(String login_ip) {
+            this.login_ip = login_ip;
+        }
+
         public String getCreated_ip() {
             return created_ip;
         }
 
         public void setCreated_ip(String created_ip) {
             this.created_ip = created_ip;
+        }
+
+        public String getCreated_time() {
+            return created_time;
+        }
+
+        public void setCreated_time(String created_time) {
+            this.created_time = created_time;
+        }
+
+        public String getUpdated_time() {
+            return updated_time;
+        }
+
+        public void setUpdated_time(String updated_time) {
+            this.updated_time = updated_time;
+        }
+
+        public String getLocked() {
+            return locked;
+        }
+
+        public void setLocked(String locked) {
+            this.locked = locked;
+        }
+
+        public List<String> getRoles() {
+            return roles;
+        }
+
+        public void setRoles(List<String> roles) {
+            this.roles = roles;
         }
     }
 }

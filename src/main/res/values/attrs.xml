@@ -21,4 +21,6 @@
         <!--星星之间间距-->
         <attr name="star_padding" format="dimension"></attr>
     </declare-styleable>
+
+
 </resources>

@@ -205,6 +205,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/creditLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -252,7 +253,7 @@
             android:layout_marginLeft="@dimen/dp_4"
             android:layout_weight="1"
             android:progress="35"
-            android:max="100"
+            android:max="1000"
             android:progressDrawable="@drawable/seekbar_style"
             style="?android:attr/progressBarStyleHorizontal" />
     </LinearLayout>
@@ -284,26 +285,29 @@
             android:paddingLeft="@dimen/dp_8">
 
             <TextView
+                android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="lv1"
-                android:textColor="@color/orange400"
+                android:textColor="@color/text_grey"
                 android:textSize="@dimen/text_16sp" />
 
             <TextView
+                android:id="@+id/tv_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="lv2"
-                android:textColor="@color/orange400"
+                android:textColor="@color/text_grey"
                 android:textSize="@dimen/text_16sp" />
 
             <TextView
+                android:id="@+id/tv_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_4"
@@ -314,6 +318,7 @@
                 android:textSize="@dimen/text_16sp" />
 
             <TextView
+                android:id="@+id/tv_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_4"
@@ -324,6 +329,7 @@
                 android:textSize="@dimen/text_16sp" />
 
             <TextView
+                android:id="@+id/tv_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_4"

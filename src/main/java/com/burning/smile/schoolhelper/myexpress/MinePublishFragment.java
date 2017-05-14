@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -25,7 +23,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,8 +70,6 @@ public class MinePublishFragment extends Fragment {
     private List<ExpressListBean.Express> expresses;
     private boolean isLoadMore = false;
     private float score;
-    private boolean isCan = false;
-    private Thread thread;
 
     public static MinePublishFragment newInstance() {
         MinePublishFragment fragment = new MinePublishFragment();
@@ -224,6 +219,46 @@ public class MinePublishFragment extends Fragment {
                 });
     }
 
+
+    public void reviewOrder(String expressId, String rating, String content) {
+        AndroidFragUtil.showDialog(getActivity().getSupportFragmentManager(), new LoadingFragment());
+        RetrofitUtil.getRetrofitApiInstance().reviewOrder(userInfoBean.getToken(), expressId, rating, content)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<JSONObject>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        AndroidFragUtil.dismissDialog(getActivity().getSupportFragmentManager());
+                        if (e instanceof MalformedJsonException) {
+                            Toast.makeText(getActivity(), "评价订单失败", Toast.LENGTH_SHORT).show();
+                        } else if (e instanceof HttpException) {
+                            try {
+                                JSONObject object = JSON.parseObject(((HttpException) e).response().errorBody().string().trim(), JSONObject.class);
+                                Toast.makeText(getActivity(), object.getJSONObject("error").getString("message"), Toast.LENGTH_SHORT).show();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        } else if (e instanceof ConnectException) {
+                            Toast.makeText(getActivity(), "当前无网络,请检查网络状况后重试", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        Log.e("error", e.toString());
+                    }
+
+                    @Override
+                    public void onNext(JSONObject jsonObject) {
+                        AndroidFragUtil.dismissDialog(getActivity().getSupportFragmentManager());
+                        Toast.makeText(getActivity(), "评价订单成功，感谢您的评价", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     public void showDialog(final String id) {
         AlertDialog dialog = new AlertDialog.Builder(getActivity()).setMessage("确定此快递已经送达到您手上？")
                 .setPositiveButton("我确定", new DialogInterface.OnClickListener() {
@@ -243,28 +278,12 @@ public class MinePublishFragment extends Fragment {
     }
 
 
-    public void showOpinionDialog() {
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    isCan = true;
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        thread.start();
+    public void showOpinionDialog(final String expressId) {
         View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.view_credit_dialog, null);
-        final RelativeLayout root = (RelativeLayout) dialogView.findViewById(R.id.rl1);
         final TextView tv2 = (TextView) dialogView.findViewById(R.id.tv2);
-        tv2.setText("+2");
-        tv2.setTextColor(ContextCompat.getColor(getActivity(), R.color.yellow500));
+        tv2.setVisibility(View.GONE);
         final StarRatingView starRatingView = (StarRatingView) dialogView.findViewById(R.id.ratingbar);
-        starRatingView.setRate(5);
+        starRatingView.setRate(6);
         final EditText opinion = (EditText) dialogView.findViewById(R.id.opinion);
         final Button cancel = (Button) dialogView.findViewById(R.id.cancel);
         final Button submit = (Button) dialogView.findViewById(R.id.submit);
@@ -286,105 +305,25 @@ public class MinePublishFragment extends Fragment {
         window.setAttributes(lp);
         dialog.setContentView(dialogView);
         dialog.show();
-        score = 2.5f;
+        score = 3.0f;
         starRatingView.setOnRateChangeListener(new StarRatingView.OnRateChangeListener() {
             @Override
             public void onRateChange(int rate) {
-                Log.e("rate", rate / 2 - 0.5 + "");
                 score = rate / 2f;
-                int i = 0;
-                int credit = 0;
-                int color = R.color.red500;
-                if (score <= 1) {
-                    i = 0;
-                    if (score == 0) {
-                        credit = -10;
-                    } else if (score == 0.5) {
-                        credit = -8;
-                    } else {
-                        credit = -5;
-                    }
-                    color = R.color.red800;
-                } else if (score > 1 && score <= 2) {
-                    i = 1;
-                    if (score == 1.5) {
-                        credit = -3;
-                    } else {
-                        credit = 0;
-                    }
-                    color = R.color.red500;
-                } else if (score > 2 && score <= 3) {
-                    i = 2;
-                    if (score == 2.5) {
-                        credit = +2;
-                    } else {
-                        credit = +5;
-                    }
-                    color = R.color.yellow500;
-                } else if (score > 3 && score <= 4) {
-                    i = 3;
-                    if (score == 3.5) {
-                        credit = +7;
-                    } else {
-                        credit = +10;
-                    }
-                    color = R.color.blue600;
-                } else if (score > 4 && score <= 5) {
-                    i = 4;
-                    if (score == 4.5) {
-                        credit = +12;
-                    } else {
-                        credit = +15;
-                    }
-                    color = R.color.purplea700;
-                }
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins((int) starRatingView.getX() + (int) starRatingView.getChildAt(i).getX(), 0, 0, 0);
-                if (!isCan) {
-                    return;
-                }
-                isCan = false;
-                final TextView textView = new TextView(getActivity());
-                textView.setLayoutParams(layoutParams);
-                textView.setText(credit > 0 ? "+" + credit : credit + "");
-                textView.setTextSize(16);
-                textView.setTextColor(ContextCompat.getColor(getActivity(), color));
-                final Animation out = AnimationUtils.loadAnimation(getActivity(), R.anim.tv_gone);
-                out.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
 
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        textView.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-                root.addView(textView);
-                textView.startAnimation(out);
-                tv2.setText(credit > 0 ? "+" + credit : credit + "");
-                tv2.setTextColor(ContextCompat.getColor(getActivity(), color));
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                thread = null;
             }
         });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                thread = null;
-                Log.e("score", score + "");
+                reviewOrder(expressId,String.valueOf(score),opinion.getText().toString().trim().equals("")?"暂无评价":opinion.getText().toString().trim());
             }
         });
     }
@@ -432,9 +371,6 @@ public class MinePublishFragment extends Fragment {
             final ExpressListBean.Express express = expresses.get(position);
             String expressType = express.getType().equals("1") ? "小包裹" : (express.getType().equals("2") ? "中包裹" : "大包裹");
             viewHolder.item_express_type.setText(expressType);
-            //String status = express.getStatus().equals("1")?"暂无人接单":(express.getStatus().equals("2")?"有人接单":(express.getStatus().equals("3")?"已送达":"已确认"));
-//            viewHolder.item_express_status.setText(status);
-            Log.e("status", express.getStatus());
             String status = express.getStatus();
             if (status.equals("1")) {
                 viewHolder.item_express_type.setBackgroundResource(R.drawable.rect_express_type_bg_1);
@@ -485,7 +421,7 @@ public class MinePublishFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (viewHolder.item_express_pay.getText().toString().equals("评价该单")) {
-                        showOpinionDialog();
+                        showOpinionDialog(express.getId());
                     } else {
                         showDialog(express.getId());
                     }

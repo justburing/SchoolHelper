@@ -52,12 +52,15 @@ public interface ServiceAPI {
     @POST("expresses/{expressId}/apply")
     Observable<JSONObject> dealExpress(@Header("X-Auth-Token") String token, @Path("expressId") String expressId);
 
-    //注册
     @FormUrlEncoded
     @POST("expresses")
     Observable<JsonObject> postExpress(@Header("X-Auth-Token") String token, @Field("title") String title, @Field("detail") String detail, @Field("offer") String offer, @Field("type") String type, @Field("is_urgent") String is_urgent);
-    //获取旧货的列表
 
+    @FormUrlEncoded
+    @POST("expresses/{expressId}/review")
+    Observable<JSONObject> reviewOrder(@Header("X-Auth-Token") String token, @Path("expressId") String expressId, @Field("rating") String rating, @Field("content") String content);
+
+    //获取旧货的列表
     /**
      * start false string 0 起始页
      * limit false string 10 每页数量

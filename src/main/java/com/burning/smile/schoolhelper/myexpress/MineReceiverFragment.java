@@ -294,7 +294,7 @@ public class MineReceiverFragment extends Fragment {
         starRatingView.setOnRateChangeListener(new StarRatingView.OnRateChangeListener() {
             @Override
             public void onRateChange(int rate) {
-                Log.e("rate", rate / 2 - 0.5 + "");
+             //   Log.e("rate", rate / 2 - 0.5 + "");
                 score = rate / 2f;
                 int i = 0;
                 int credit = 0;
@@ -388,7 +388,7 @@ public class MineReceiverFragment extends Fragment {
             public void onClick(View v) {
                 dialog.dismiss();
                 thread = null;
-                Log.e("score", score + "");
+                //Log.e("score", score + "");
             }
         });
     }
@@ -440,7 +440,7 @@ public class MineReceiverFragment extends Fragment {
             viewHolder.item_express_content.setText(express.getDetail());
             //String status = express.getStatus().equals("1")?"暂无人接单":(express.getStatus().equals("2")?"有人接单":(express.getStatus().equals("3")?"已送达":"已确认"));
 //            viewHolder.item_express_status.setText(status);
-            Log.e("status", express.getStatus());
+ //           Log.e("status", express.getStatus());
             String status = express.getStatus();
             if (status.equals("1")) {
                 viewHolder.item_express_type.setBackgroundResource(R.drawable.rect_express_type_bg_1);
@@ -487,7 +487,7 @@ public class MineReceiverFragment extends Fragment {
                 viewHolder.item_express_delivery.setBackgroundResource(R.drawable.rect_express_opinion_btn);
                 viewHolder.item_express_delivery.setEnabled(true);
                 viewHolder.item_express_delivery.setText("评价该单");
-                viewHolder.item_express_delivery.setVisibility(View.VISIBLE);
+                viewHolder.item_express_delivery.setVisibility(View.GONE);
             }
             viewHolder.item_express_delivery.setOnClickListener(new View.OnClickListener() {
                 @Override
