@@ -1,5 +1,6 @@
 package com.burning.smile.schoolhelper.addexpress;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 import com.burning.smile.androidtools.activity.BaseActivity;
 import com.burning.smile.androidtools.tools.AndroidFragUtil;
 import com.burning.smile.schoolhelper.R;
+import com.burning.smile.schoolhelper.mine.ModifyPayPassActivity;
 import com.burning.smile.schoolhelper.util.LoadingFragment;
 
 import butterknife.BindView;
@@ -54,6 +56,7 @@ public class AddExpressActivity extends BaseActivity implements AddExpressContra
 
 
     private AddExpressContract.Presenter mPresenter;
+    private int isPaySet;
 
     @Override
     protected void init() {
@@ -88,7 +91,7 @@ public class AddExpressActivity extends BaseActivity implements AddExpressContra
                 String detail = expressCotnent.getText().toString();
                 //是否加急0否1是
                 String is_urgent = isUrgent.isChecked() ? "2" : "1";
-                mPresenter.postExpress(title, detail, offer, type, is_urgent);
+                mPresenter.showPayDialog(title, detail, offer, type, is_urgent);
                 break;
         }
     }
@@ -140,7 +143,32 @@ public class AddExpressActivity extends BaseActivity implements AddExpressContra
     }
 
     @Override
+    public void showInputPayPassError(String msg) {
+        toast(msg);
+        startActivityForResult(new Intent(AddExpressActivity.this, ModifyPayPassActivity.class), 100);
+    }
+
+    @Override
+    public void setIsPaySet(int isPaySet) {
+        this.isPaySet = isPaySet;
+    }
+
+    @Override
+    public int getIsPaySet() {
+        return isPaySet;
+    }
+
+    @Override
     public void setPresenter(AddExpressContract.Presenter presenter) {
         this.mPresenter = presenter;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            isPaySet = data.getIntExtra("isPaySet",0);
+        }
     }
 }

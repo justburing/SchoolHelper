@@ -79,6 +79,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     public void onNext(final UserInfoBean userInfoBean) {
                         mSharedPreferences.edit().putString(AppConfig.USER_NAME, userName).apply();
                         mSharedPreferences.edit().putBoolean(AppConfig.IS_AUTO_LOGIN, view.isAutoLogin()).apply();
+                     //   mSharedPreferences.edit().putInt(AppConfig.USER_PAY_SET,userInfoBean.getUser().getIs_pay_set());
                         if (view.isRememberPassword()) {
                             mSharedPreferences.edit().putString(AppConfig.USER_PASS, userPassword).apply();
                         } else {

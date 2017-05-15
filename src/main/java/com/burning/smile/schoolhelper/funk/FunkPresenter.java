@@ -50,7 +50,7 @@ public class FunkPresenter implements FunkContract.Presenter {
          status false string 1 (0:未发布， 1:已发布，2: 已关闭)
          */
         view.showLoadingView();
-        RetrofitUtil.getRetrofitApiInstance().getFunk(userInfo.getToken(), String.valueOf(start), String.valueOf(limit), orderBy, "", "", "")
+        RetrofitUtil.getRetrofitApiInstance().getFunk(userInfo.getToken(), String.valueOf(start), String.valueOf(limit), orderBy, "", "", "","")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<FunkListBean>() {
@@ -93,7 +93,7 @@ public class FunkPresenter implements FunkContract.Presenter {
 
     @Override
     public void loadMoreData(final int start, final int limit, String orderBy) {
-        RetrofitUtil.getRetrofitApiInstance().getFunk(userInfo.getToken(), String.valueOf(start), String.valueOf(limit), orderBy, "", "", "")
+        RetrofitUtil.getRetrofitApiInstance().getFunk(userInfo.getToken(), String.valueOf(start), String.valueOf(limit), orderBy, "", "", "","")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<FunkListBean>() {

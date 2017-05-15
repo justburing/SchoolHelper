@@ -16,6 +16,10 @@ public class AppConfig {
     public static final String USER_PASS = "userPassword";
     public static final String IS_AUTO_LOGIN = "isAutoLogin";
     public static final String USER_AVATAR = "userAvatar";
+    public static final String USER_PAY_SET = "user_pay_set";
+
+
+
 
     public static final String USER_FILE = "userBean";
 

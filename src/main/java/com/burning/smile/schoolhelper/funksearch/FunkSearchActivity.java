@@ -431,7 +431,7 @@ public class FunkSearchActivity extends BaseActivity {
          status false string 1 (0:未发布， 1:已发布，2: 已关闭)
          */
         AndroidFragUtil.showDialog(getSupportFragmentManager(), new LoadingFragment());
-        RetrofitUtil.getRetrofitApiInstance().getFunk(bean.getToken(), String.valueOf(start), String.valueOf(limit), orderByText, keyWord, funkTypeText, funkStatusText)
+        RetrofitUtil.getRetrofitApiInstance().getFunk(bean.getToken(), String.valueOf(start), String.valueOf(limit), orderByText, keyWord, funkTypeText, funkStatusText,"")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<FunkListBean>() {

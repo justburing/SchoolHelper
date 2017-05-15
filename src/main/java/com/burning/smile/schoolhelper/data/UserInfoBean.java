@@ -10,8 +10,8 @@ public class UserInfoBean implements Serializable {
 
 
     /**
-     * user : {"id":"6","username":"admin","mobile":"","roles":["ROLE_SUPER_ADMIN","ROLE_ADMIN","ROLE_USER"],"nickname":"admin","email":"test@admin.com","email_verified":"0","avatar":"http://112.74.36.71:8000/files/user/2017/05-06/08154738898e182085.jpg","point":"0","coin":"0","qq":"","birthday":null,"credit":"300","login_time":"2017-05-14T03:08:11+00:00","login_ip":"60.176.42.5","created_ip":"127.0.0.1","created_time":"2017-04-26T06:22:04+00:00","updated_time":"2017-05-14T03:08:11+00:00","locked":"0"}
-     * token : ns4qnpsgn0g0484wc4s4goo44csssc4
+     * user : {"id":"5","username":"2013329620051","mobile":"","roles":["ROLE_USER","ROLE_ADMIN"],"nickname":"BurNIng","email":"test@qw.com","email_verified":"0","avatar":"http://112.74.36.71:8000/files/user/2017/05-06/101524c11664858383.gif","point":"0","coin":"62","qq":"","birthday":null,"credit":"348","login_time":"2017-05-15T09:13:49+00:00","login_ip":"112.17.240.131","created_ip":"112.17.245.152","created_time":"2017-04-23T15:17:02+00:00","updated_time":"2017-05-15T09:13:49+00:00","locked":"0","tag_id":"","is_pay_set":1}
+     * token : 9blhr8aa7akoo8ggsckg4koko08wgs0
      */
 
     private UserBean user;
@@ -33,27 +33,29 @@ public class UserInfoBean implements Serializable {
         this.token = token;
     }
 
-    public static class UserBean implements  Serializable{
+    public static class UserBean implements Serializable{
         /**
-         * id : 6
-         * username : admin
+         * id : 5
+         * username : 2013329620051
          * mobile :
-         * roles : ["ROLE_SUPER_ADMIN","ROLE_ADMIN","ROLE_USER"]
-         * nickname : admin
-         * email : test@admin.com
+         * roles : ["ROLE_USER","ROLE_ADMIN"]
+         * nickname : BurNIng
+         * email : test@qw.com
          * email_verified : 0
-         * avatar : http://112.74.36.71:8000/files/user/2017/05-06/08154738898e182085.jpg
+         * avatar : http://112.74.36.71:8000/files/user/2017/05-06/101524c11664858383.gif
          * point : 0
-         * coin : 0
+         * coin : 62
          * qq :
          * birthday : null
-         * credit : 300
-         * login_time : 2017-05-14T03:08:11+00:00
-         * login_ip : 60.176.42.5
-         * created_ip : 127.0.0.1
-         * created_time : 2017-04-26T06:22:04+00:00
-         * updated_time : 2017-05-14T03:08:11+00:00
+         * credit : 348
+         * login_time : 2017-05-15T09:13:49+00:00
+         * login_ip : 112.17.240.131
+         * created_ip : 112.17.245.152
+         * created_time : 2017-04-23T15:17:02+00:00
+         * updated_time : 2017-05-15T09:13:49+00:00
          * locked : 0
+         * tag_id :
+         * is_pay_set : 1
          */
 
         private String id;
@@ -74,6 +76,8 @@ public class UserInfoBean implements Serializable {
         private String created_time;
         private String updated_time;
         private String locked;
+        private String tag_id;
+        private int is_pay_set;
         private List<String> roles;
 
         public String getId() {
@@ -218,6 +222,22 @@ public class UserInfoBean implements Serializable {
 
         public void setLocked(String locked) {
             this.locked = locked;
+        }
+
+        public String getTag_id() {
+            return tag_id;
+        }
+
+        public void setTag_id(String tag_id) {
+            this.tag_id = tag_id;
+        }
+
+        public int getIs_pay_set() {
+            return is_pay_set;
+        }
+
+        public void setIs_pay_set(int is_pay_set) {
+            this.is_pay_set = is_pay_set;
         }
 
         public List<String> getRoles() {

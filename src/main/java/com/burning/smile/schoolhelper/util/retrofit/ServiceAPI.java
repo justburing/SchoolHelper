@@ -41,6 +41,17 @@ public interface ServiceAPI {
     @POST("users/avatar")
     Observable<UserInfoBean.UserBean> modifyUserAvatar(@Header("X-Auth-Token") String token, @Body RequestBody Body);
 
+    //登陆
+    @FormUrlEncoded
+    @POST("users/set_tag")
+    Observable<UserInfoBean.UserBean> setTag(@Header("X-Auth-Token") String token,@Field("user_id") String user_id, @Field("tag_id") String tag_id);
+
+
+    //登陆
+    @FormUrlEncoded
+    @POST("users/pay_pass")
+    Observable<JSONObject> modifyPayPass(@Header("X-Auth-Token") String token,@Field("password") String password, @Field("new_pay_password") String new_pay_password);
+
     //获取快递列表
     @GET("expresses")
     Observable<ExpressListBean> getExpress(@Header("X-Auth-Token") String token, @Query("start") String start, @Query("limit") String limit, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("type") String type, @Query("status") String status, @Query("keywordType") String keywordType, @Query("keyword") String keyword, @Query("is_urgent") String is_urgent);
@@ -54,7 +65,7 @@ public interface ServiceAPI {
 
     @FormUrlEncoded
     @POST("expresses")
-    Observable<JsonObject> postExpress(@Header("X-Auth-Token") String token, @Field("title") String title, @Field("detail") String detail, @Field("offer") String offer, @Field("type") String type, @Field("is_urgent") String is_urgent);
+    Observable<JsonObject> postExpress(@Header("X-Auth-Token") String token, @Field("title") String title, @Field("detail") String detail, @Field("offer") String offer, @Field("type") String type, @Field("is_urgent") String is_urgent,@Field("pay_password")String pay_password);
 
     @FormUrlEncoded
     @POST("expresses/{expressId}/review")
@@ -70,7 +81,7 @@ public interface ServiceAPI {
      * status false string 1 (0:未发布， 1:已发布，2: 已关闭)
      */
     @GET("goods")
-    Observable<FunkListBean> getFunk(@Header("X-Auth-Token") String token, @Query("start") String start, @Query("limit") String limit, @Query("orderby") String orderby, @Query("title") String title, @Query("category_id") String category_id, @Query("status") String status);
+    Observable<FunkListBean> getFunk(@Header("X-Auth-Token") String token, @Query("start") String start, @Query("limit") String limit, @Query("orderby") String orderby, @Query("title") String title, @Query("category_id") String category_id, @Query("status") String status,@Query("publisher_id")String publisher_id);
 
     //获取货物详情
     @GET("goods/{id}")

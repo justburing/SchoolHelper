@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -35,19 +36,27 @@ import com.burning.smile.schoolhelper.myconversation.ConversationListActivity;
 import com.burning.smile.schoolhelper.setting.SettingActivity;
 import com.burning.smile.schoolhelper.util.ActivityManager;
 import com.burning.smile.schoolhelper.util.ActivityUtils;
+import com.burning.smile.schoolhelper.util.retrofit.RetrofitUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.event.NotificationClickEvent;
 import cn.jpush.im.android.api.model.Message;
 import de.hdodenhof.circleimageview.CircleImageView;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by smile on 2017/3/9.
@@ -79,7 +88,50 @@ public class HomeActivity extends BaseActivity implements DrawerOpreator {
     private List<Map<String, Object>> contents;
     private ListViewAdapter mAdapter;
     private SharedPreferences mSharedPreferences;
+    private UserInfoBean userInfoBean;
+    private static final int MSG_SET_ALIAS = 1001;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    Log.e(TAG, "Set alias in handler.");
+                    // 调用 JPush 接口来设置别名。
+                    JPushInterface.setAliasAndTags(HomeActivity.this,
+                            (String) msg.obj,
+                            null, mAliasCallback);
+                    break;
+                default:
+                    Log.i(TAG, "Unhandled msg - " + msg.what);
+                    break;
+            }
+        }
+    };
 
+    private  TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs ;
+            switch (code) {
+                case 0:
+                    logs = "设置别名成功";
+                    Log.e(TAG, logs);
+                    setTag(alias);
+                    break;
+                case 6002:
+                    logs = "设置别名超时，重试中";
+                    Log.e(TAG, logs);
+                    // 延迟 60 秒来调用 Handler 设置别名
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    break;
+                default:
+                    logs = "出现错误： " + code;
+                    Log.e(TAG, logs);
+            }
+           // toast(logs);
+        }
+    };
 
     @Override
     protected void init() {
@@ -154,23 +206,30 @@ public class HomeActivity extends BaseActivity implements DrawerOpreator {
         }
         mAdapter = new ListViewAdapter(this);
         leftMenuLv.setAdapter(mAdapter);
-        //初始化用户信息
-        UserInfoBean userInfo = AndroidFileUtil.getObject(this, AppConfig.USER_FILE);
-        userNickname.setText(userInfo.getUser().getNickname());
-        userCoin.setText(userInfo.getUser().getCoin().toString());
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, SettingActivity.class));
-            }
-        });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Glide.with(this).load(mSharedPreferences.getString(AppConfig.USER_AVATAR, "")).error(R.mipmap.ic_test_avatart).into(userAvatar);
+        //初始化用户信息
+        userInfoBean = AndroidFileUtil.getObject(this, AppConfig.USER_FILE);
+        userNickname.setText(userInfoBean.getUser().getNickname());
+        userCoin.setText(userInfoBean.getUser().getCoin().toString());
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, SettingActivity.class));
+            }
+        });
+        if(userInfoBean.getUser().getTag_id().equals("")){
+            setAlias();
+        }
     }
+
+
 
     @Override
     public void openDrawer() {
@@ -187,7 +246,47 @@ public class HomeActivity extends BaseActivity implements DrawerOpreator {
         return drawerLayout.isDrawerOpen(leftMenu);
     }
 
+    private void setAlias() {
+        String alias = AppConfig.JMESSAGE_PREIX+userInfoBean.getUser().getId();
+        if (!isValidTagAndAlias(alias)) {
+            toast("别名不合法");
+            return;
+        }
+        // 调用 Handler 来异步设置别名
+        mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, alias));
+    }
 
+    // 校验Tag Alias 只能是数字,英文字母和中文
+    public boolean isValidTagAndAlias(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_!@#$&*+=.|]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
+    }
+
+
+    public void setTag(final String alias){
+        RetrofitUtil.getRetrofitApiInstance().setTag(userInfoBean.getToken(),userInfoBean.getUser().getId(),alias)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UserInfoBean.UserBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                       // setTag(alias);
+                    }
+
+                    @Override
+                    public void onNext(UserInfoBean.UserBean userBean) {
+                        userInfoBean.setUser(userBean);
+                        AndroidFileUtil.saveObject(HomeActivity.this,userInfoBean,AppConfig.USER_FILE);
+                        Log.e("alias","yes");
+                    }
+                });
+    }
     private class ListViewAdapter extends BaseAdapter {
         private Context mContext;
         private int selectedPosition;

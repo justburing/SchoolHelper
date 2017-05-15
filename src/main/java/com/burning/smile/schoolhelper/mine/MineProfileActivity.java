@@ -125,7 +125,7 @@ public class MineProfileActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.backLL, R.id.userAvatarLL, R.id.userNicknameLL, R.id.userBirthdayLL, R.id.userEmialLL, R.id.userQQLL, R.id.userPhoneLL})
+    @OnClick({R.id.backLL, R.id.userAvatarLL, R.id.userNicknameLL, R.id.userBirthdayLL, R.id.userEmialLL, R.id.userQQLL, R.id.userPhoneLL,R.id.userPayPasswordLL})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.backLL:
@@ -149,7 +149,9 @@ public class MineProfileActivity extends BaseActivity {
             case R.id.userPhoneLL:
                 showMofifyMobileDialog();
                 break;
-
+            case R.id.userPayPasswordLL:
+                startActivity(new Intent(MineProfileActivity.this,ModifyPayPassActivity.class));
+                break;
         }
     }
 
