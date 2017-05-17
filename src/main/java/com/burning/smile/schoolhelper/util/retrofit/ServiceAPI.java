@@ -47,10 +47,19 @@ public interface ServiceAPI {
     Observable<UserInfoBean.UserBean> setTag(@Header("X-Auth-Token") String token,@Field("user_id") String user_id, @Field("tag_id") String tag_id);
 
 
-    //登陆
+    @GET("users/{user_id}")
+    Observable<UserInfoBean.UserBean> getUserInfo(@Path("user_id") String user_id);
+
+
     @FormUrlEncoded
     @POST("users/pay_pass")
     Observable<JSONObject> modifyPayPass(@Header("X-Auth-Token") String token,@Field("password") String password, @Field("new_pay_password") String new_pay_password);
+
+    @FormUrlEncoded
+    @POST("users/approval")
+    Observable<JSONObject> userVertify(@Header("X-Auth-Token") String token,@Field("truename") String truename, @Field("note") String note,@Field("mobile") String mobile,@Field("email") String email,@Field("student_card_img") String student_card_img);
+
+
 
     //获取快递列表
     @GET("expresses")

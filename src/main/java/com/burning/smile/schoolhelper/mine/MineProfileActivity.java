@@ -86,6 +86,8 @@ public class MineProfileActivity extends BaseActivity {
     LinearLayout userQQLL;
     @BindView(R.id.userPhone)
     TextView userPhone;
+    @BindView(R.id.userVertifyLL)
+    LinearLayout userVertifyLL;
 
 
     private AndroidCameraUtil mCameraUtil;
@@ -125,7 +127,7 @@ public class MineProfileActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.backLL, R.id.userAvatarLL, R.id.userNicknameLL, R.id.userBirthdayLL, R.id.userEmialLL, R.id.userQQLL, R.id.userPhoneLL,R.id.userPayPasswordLL})
+    @OnClick({R.id.backLL, R.id.userAvatarLL, R.id.userNicknameLL, R.id.userBirthdayLL, R.id.userEmialLL, R.id.userQQLL, R.id.userPhoneLL,R.id.userPayPasswordLL,R.id.userVertifyLL})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.backLL:
@@ -151,6 +153,9 @@ public class MineProfileActivity extends BaseActivity {
                 break;
             case R.id.userPayPasswordLL:
                 startActivity(new Intent(MineProfileActivity.this,ModifyPayPassActivity.class));
+                break;
+            case R.id.userVertifyLL:
+                startActivity(new Intent(MineProfileActivity.this,UserProfileVertifyActivity.class));
                 break;
         }
     }

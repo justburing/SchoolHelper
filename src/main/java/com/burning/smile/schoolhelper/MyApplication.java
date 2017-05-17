@@ -15,6 +15,7 @@ import java.util.logging.Level;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.smssdk.SMSSDK;
 
 /**
  * Created by smile on 2017/3/8.
@@ -38,6 +39,7 @@ public class MyApplication extends Application {
         JMessageClient.init(this, true);// 初始化 JMessage
         JPushInterface.resumePush(this);
         Stetho.initializeWithDefaults(this);
+        SMSSDK.initSDK(this, "1de7482daa45b", "2f7bb8f19c3a6d84f14fedf07a29f24e");
         //必须调用初始化
         OkGo.init(this);
         //以下设置的所有参数是全局参数,同样的参数可以在请求的时候再设置一遍,那么对于该请求来讲,请求中的参数会覆盖全局参数

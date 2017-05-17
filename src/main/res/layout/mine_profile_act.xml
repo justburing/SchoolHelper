@@ -383,4 +383,36 @@
         android:background="#E8E8E8"
         android:paddingTop="@dimen/dp_2"
         android:paddingBottom="@dimen/dp_2" />
+    <LinearLayout
+        android:id="@+id/userVertifyLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="实名验证"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/text_14sp"
+            android:minWidth="@dimen/dp_78" />
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:src="@mipmap/arrow_right" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.5"
+        android:background="#E8E8E8"
+        android:paddingTop="@dimen/dp_2"
+        android:paddingBottom="@dimen/dp_2" />
 </LinearLayout>

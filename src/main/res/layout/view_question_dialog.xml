@@ -17,6 +17,7 @@
         android:background="@color/light_white"
         />
     <TextView
+        android:id="@+id/content"
         android:paddingTop="@dimen/dp_12"
         android:paddingBottom="@dimen/dp_12"
         android:layout_marginLeft="@dimen/dp_10"

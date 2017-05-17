@@ -311,7 +311,7 @@ public class ExpressFragment extends Fragment implements ExpressContract.View, O
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            ExpressListBean.Express express = expresses.get(position);
+            final ExpressListBean.Express express = expresses.get(position);
             String avatar = express.getPublisher().getAvatar();
             if (avatar != null && !avatar.equals("")) {
                 Glide.with(mContext).load(avatar).into(viewHolder.item_userAvatar);
@@ -343,6 +343,7 @@ public class ExpressFragment extends Fragment implements ExpressContract.View, O
             } else {
                 viewHolder.item_expres_status.setVisibility(View.GONE);
             }
+//
             return convertView;
         }
 

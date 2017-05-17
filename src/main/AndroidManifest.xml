@@ -46,6 +46,15 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--如果你需要智能验证，请授权READ_PHONE_STATE，READ_SMS。-->
+    <!--如果你需要通讯录功能，请授权READ_CONTACT。-->
+    <!--如果你需要读取SD卡，请授权WRITE_EXTERNAL_STORAGE-->
+    <!--如果用到UI库中的自动读取验证码，请授权RECEIVE_SMS-->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -70,6 +79,13 @@
         <!--android:process=":multiprocess"-->
         <!--tools:node="replace">-->
         <!--</service>-->
+
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
@@ -156,6 +172,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3"/>
         <activity android:name=".mine.ModifyPayPassActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mine.UserProfileVertifyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mine.UserInfoActivity"
             android:screenOrientation="portrait"/>
     </application>
 

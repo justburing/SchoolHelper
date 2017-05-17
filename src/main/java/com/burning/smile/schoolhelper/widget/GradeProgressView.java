@@ -234,6 +234,11 @@ public class GradeProgressView extends View {
         setMeasuredDimension(Math.min(measureHeight, measureWidth), Math.min(measureHeight, measureWidth));
     }
 
+    public void setTextSize(int size,int size1){
+        mTextPaint.setTextSize(size);
+        mTextPaint1.setTextSize(size1);
+    }
+
     public void setOnProgressChangeListener(OnProgressChangeListener listener) {
         this.mListener = listener;
     }
